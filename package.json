@@ -1,0 +1,61 @@
+{
+  "name": "expensify-common",
+  "version": "1.0.0",
+  "author": "Expensify, Inc.",
+  "description": "Expensify libraries and components shared across different repos",
+  "homepage": "https://expensify.com",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "grunt": "grunt",
+    "test": "jest",
+    "lint": "eslint lib/",
+    "patch": "npm --no-git-tag-version version patch",
+    "update-tlds": "echo \"$(curl -s https://data.iana.org/TLD/tlds-alpha-by-domain.txt | sed '1d' | awk '{print length, $0}' - | sort -n -r | cut -d \" \" -f2- )|SJC|RNO|LAX\" | tr '\\n' '|' | sed s'/.$//' | printf \"const TLD_REGEX='$(cat -)';\\n\\nexport default TLD_REGEX;\\n\" > lib/tlds.jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Expensify/JS-Libs.git"
+  },
+  "dependencies": {
+    "classnames": "2.3.1",
+    "clipboard": "2.0.4",
+    "html-entities": "^2.3.3",
+    "jquery": "3.6.0",
+    "localforage": "^1.10.0",
+    "lodash": "4.17.21",
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "semver": "^7.3.5",
+    "simply-deferred": "git+https://github.com/Expensify/simply-deferred.git#77a08a95754660c7bd6e0b6979fdf84e8e831bf5",
+    "string.prototype.replaceall": "^1.0.6",
+    "ua-parser-js": "^1.0.35",
+    "underscore": "1.13.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.6",
+    "babel-jest": "^26.3.0",
+    "babelify": "10.0.0",
+    "eslint-config-expensify": "^2.0.16",
+    "eslint-plugin-jest": "^24.1.5",
+    "grunt": "*",
+    "grunt-chokidar": "1.0.2",
+    "grunt-eslint": "22.0.0",
+    "jest": "^26.4.2",
+    "jit-grunt": "^0.10.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+          ]
+        }
+      ]
+    ]
+  }
+}
